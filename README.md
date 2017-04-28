@@ -51,7 +51,7 @@ When you are finished with lab, follow these steps to submit your work. Create o
  - Create a new Heroku app for deployment.
 1. As a developer, I want my app to run in a development environment that matches production, so that I can reduce bugs related to infrastructure surprises.
  - Start your app with `node server.js`
- - TODO: Refactor your AJAX request to proxy your GitHub API calls through the server
+ - DONE: Refactor your AJAX request to proxy your GitHub API calls through the server
 1. As a developer, I want my secret tokens accessed only through environment variables, so that I can keep them secure.
  - Set the proper env vars on your local system.
  - Ensure your code passes ESLint
