@@ -8,7 +8,7 @@ const requestProxy = require('express-request-proxy'); // REVIEW: We've added a 
 const PORT = process.env.PORT || 3000;
 const app = express();
 // const conString = 'postgres://USERNAME:PASSWORD@HOST:PORT';
-const conString = ''; // TODO: Don't forget to set your own conString
+const conString = process.env.DATABASE_URL + 'kilovolt'; // DONE: Don't forget to set your own conString
 const client = new pg.Client(conString);
 client.connect();
 client.on('error', err => console.error(err));
@@ -19,6 +19,7 @@ app.use(express.static('./public'));
 
 // REVIEW: This is a new proxy method which acts as a 'middle man' (middleware) for our request.
 function proxyGitHub(request, response) {
+  console.log(process.env.GITHUB_TOKEN);
   console.log('Routing GitHub request for', request.params[0]);
   (requestProxy({
     url: `https://api.github.com/${request.params[0]}`,
