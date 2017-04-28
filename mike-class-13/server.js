@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const requestProxy = require('express-request-proxy'); // REVIEW: We've added a new package here to our requirements, as well as in the package.json
 const PORT = process.env.PORT || 3000;
 const app = express();
-const conString = HEROKU_POSTGRESQL_GREEN_URL;
+const conString = process.env.HEROKU_POSTGRESQL_GREEN_URL + 'dc559pm88qnle7';
 const client = new pg.Client(conString);
 client.connect();
 client.on('error', err => console.error(err));
@@ -21,7 +21,7 @@ function proxyGitHub(request, response) {
   console.log('Routing GitHub request for', request.params[0]);
   (requestProxy({
     url: `https://api.github.com/${request.params[0]}`,
-    headers: {Authorization: `token GITHUB_TOKEN`}
+    headers: {Authorization: `token ${process.env.GITHUB_TOKEN}`}
   }))(request, response);
 }
 
